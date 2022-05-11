@@ -1,6 +1,20 @@
 <template>
   <h1>{{ title }}</h1>
-  <Modal header="Sign up for the giveaway!" text="Grab yourswag half price!" />
+  <p>Welcome....</p>
+  <div v-if="showModal">
+    <!-- Props -->
+    <!-- <Modal :header="header" :text="text" theme="sale" @close="toggleModal" /> -->
+    <!-- Slots -->
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">Sign up now!</a>
+        <a href="#">More info</a>
+      </template>
+      <h1>Giveaway!</h1>
+      <p>Grab your swag fro half price!</p>
+    </Modal>
+  </div>
+  <button @click.alt="toggleModal">Open Modal (alt)</button>
 </template>
 
 <script>
@@ -11,7 +25,15 @@ export default {
   components: { Modal },
   data() {
     return{
-      title: 'Testing Vue App'
+      title: 'Testing Vue App',
+      header: 'Sign up for the giveaway!',
+      text: 'Grab your ninja swag for half price',
+      showModal: false
+    }
+  },
+  methods: {
+    toggleModal(){
+      this.showModal = !this.showModal
     }
   }
 }
