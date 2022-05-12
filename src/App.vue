@@ -15,6 +15,17 @@
     </Modal>
   </div>
   <button @click.alt="toggleModal">Open Modal (alt)</button>
+
+  <div v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <template v-slot:links>
+        <a href="#">click to proceed!</a>
+      </template>
+      <h1>Are you sure?</h1>
+      <p>Click the following link to proceed</p>
+    </Modal>
+  </div>
+  <button @click="toggleModalTwo">Open Modal two</button>
 </template>
 
 <script>
@@ -28,12 +39,16 @@ export default {
       title: 'Testing Vue App',
       header: 'Sign up for the giveaway!',
       text: 'Grab your ninja swag for half price',
-      showModal: false
+      showModal: false,
+      showModalTwo: false,
     }
   },
   methods: {
     toggleModal(){
       this.showModal = !this.showModal
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
